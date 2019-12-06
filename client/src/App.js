@@ -4,6 +4,9 @@ import "./App.scss";
 import Players from "./components/players";
 import { useDarkMode } from "./hooks/useDarkMode";
 
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+
 function App() {
 	const [darkMode, setDarkMode] = useDarkMode(false);
 
@@ -14,8 +17,15 @@ function App() {
 
 	return (
 		<div className="App">
-			<button onClick={toggleMode}>Dark mode</button>
-			<Players></Players>
+			<Button onClick={toggleMode} variant="contained" color="secondary">
+				Join the dark side!
+			</Button>
+			<br />
+			<br />
+
+			<Grid container spacing={3}>
+				<Players></Players>
+			</Grid>
 		</div>
 	);
 }

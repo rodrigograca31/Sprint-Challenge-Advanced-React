@@ -1,7 +1,14 @@
 .App {
 	text-align: center;
+	background: teal;
+	padding: 50px;
+
+	.MuiCard-root {
+	}
 }
 .dark-mode {
-	background: black;
-	color: white;
+	.App {
+		background: black;
+		color: white;
+	}
 }
