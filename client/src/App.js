@@ -17,7 +17,6 @@ function App() {
 
 	return (
 		<div className="App">
-			TEST
 			<Button onClick={toggleMode} variant="contained" color="secondary">
 				Join the dark side!
 			</Button>

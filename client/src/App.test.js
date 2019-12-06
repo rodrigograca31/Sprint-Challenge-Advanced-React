@@ -9,28 +9,25 @@ import axios from "axios";
 
 it("renders without crashing", () => {
 	const { getByText } = render(<App />);
-	const linkElement = getByText(/test/i);
-	expect(linkElement).toBeInTheDocument();
+	const button = getByText(/Join the dark side/i);
+	expect(button).toBeInTheDocument();
 });
 
-// test("renders buttons", () => {
-// const { container, debug, getByText } = render(<App />);
-
-// const data = {
-// 	data: {
-// 		players: []
-// 	}
-// };
-// axios.get.mockImplementationOnce(() => Promise.resolve(data));
-
-// const singleButton = container.querySelector("button");
-// fireEvent.click(singleButton);
-
-// const linkElement = getByText(/Marta/i); // 2 because we clicked twice
-// expect(linkElement).toBeInTheDocument();
-
-// console.log(debug());
-// });
+test("renders buttons", () => {
+	// const { container, debug, getByText } = render(<App />);
+	// const data = {
+	// 	data: {
+	// 		players: []
+	// 	}
+	// };
+	// axios.get.mockImplementationOnce(() => Promise.resolve(data));
+	// axios.get.mockResolvedValueOnce(Promise.resolve(data));
+	// const singleButton = container.querySelector("button");
+	// fireEvent.click(singleButton);
+	// const linkElement = getByText(/Marta/i); // 2 because we clicked twice
+	// expect(linkElement).toBeInTheDocument();
+	// console.log(debug());
+});
 
 // it("fetches successfully data from an API", async () => {
 // axios.get.mockResolvedValueOnce({
