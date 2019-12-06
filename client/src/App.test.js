@@ -1,12 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { render, fireEvent, waitForElement } from "@testing-library/react";
+import {
+	render,
+	fireEvent,
+	waitForElement,
+	getAllByText
+} from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 import axios from "axios";
 import Players from "./components/players";
-// jest.mock("axios");
+
+// should get the data from the file
+jest.mock("axios", () => ({
+	get: url =>
+		Promise.resolve({
+			data: [
+				{
+					name: "rodrigo",
+					country: "Portugal",
+					searches: 100
+				}
+			]
+		})
+}));
 
 it("renders without crashing", () => {
 	const { getByText } = render(<App />);
@@ -14,62 +32,29 @@ it("renders without crashing", () => {
 	expect(button).toBeInTheDocument();
 });
 
-test("renders buttons", () => {
-	// const { container, debug, getByText } = render(<App />);
-	// const data = {
-	// 	data: {
-	// 		players: []
-	// 	}
-	// };
-	// axios.get.mockImplementationOnce(() => Promise.resolve(data));
-	// axios.get.mockResolvedValueOnce(Promise.resolve(data));
-	// const singleButton = container.querySelector("button");
-	// fireEvent.click(singleButton);
-	// const linkElement = getByText(/Marta/i); // 2 because we clicked twice
-	// expect(linkElement).toBeInTheDocument();
-	// console.log(debug());
-});
-
-// it("fetches successfully data from an API", async () => {
-// axios.get.mockResolvedValueOnce({
-// data: {
-// players: [
-// {
-// name: "rodrigo",
-// country: "rodrigo",
-// searches: 100
-// }
-// ]
-// }
-// });
-//
-// await expect(fetchData("react")).resolves.toEqual(data);
-//
-// const { container, debug, getByText } = render(<App />);
-// const rowValues = await waitForElement(() =>
-// console.log(getAllByTestId("Players"))
-// );
-// });
-//
-
 test("Players component", () => {
 	const { container, debug, getByText } = render(<Players />);
-	const palyersTitle = getByText(/Players/i); // 2 because we clicked twice
+	const palyersTitle = getByText(/Players/i);
 	expect(palyersTitle).toBeInTheDocument();
 });
 
-test("dark-mode class exists after click", () => {
-	const { container, debug, getByText } = render(<App />);
-	const singleButton = container.querySelector("button");
-	fireEvent.click(singleButton);
+test("data gets mapped", async () => {
+	const { container, debug, getAllByText } = render(<Players />);
 
-	const ele = container.querySelector(".dark-mode");
-	console.log(ele);
+	const eles = await waitForElement(options => getAllByText("Portugal"));
 
-	// expect(ele).not.toBe(null);
-	expect(ele).toBe(null);
-
-	// expect(ele).toBeInTheDocument();
+	const eles2 = await waitForElement(
+		() => container.querySelectorAll("span"),
+		{ container }
+	);
 
 	// console.log(debug());
+
+	expect(eles[0]).toBeInTheDocument();
+	expect(eles2[0]).toBeInTheDocument();
+	expect(container).toContainElement(eles[0]);
+	expect(container).toContainElement(eles2[0]);
+
+	expect(eles[0].textContent).toBe("Portugal");
+	expect(eles2[1].textContent).toBe("Portugal");
 });

@@ -20,8 +20,6 @@ class Players extends React.Component {
 		axios
 			.get("http://localhost:5000/api/players")
 			.then(({ data }) => {
-				// console.log(data);
-
 				this.setState(st => ({
 					players: data
 				}));
@@ -50,7 +48,7 @@ class Players extends React.Component {
 						// 	</>
 						// );
 						return (
-							<Grid item xs={3}>
+							<Grid item xs={3} key={Math.random()}>
 								<Card>
 									<CardContent>
 										<Typography
@@ -58,13 +56,13 @@ class Players extends React.Component {
 											component="p"
 										>
 											<b>Name: </b>
-											{player.name}
+											<span>{player.name}</span>
 											<br />
 											<b>Country: </b>
-											{player.country}
+											<span>{player.country}</span>
 											<br />
 											<b>Searches: </b>
-											{player.searches}
+											<span>{player.searches}</span>
 											<br />
 											<br />
 										</Typography>
