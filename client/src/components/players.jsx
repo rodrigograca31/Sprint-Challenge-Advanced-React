@@ -10,13 +10,16 @@ class Players extends React.Component {
 	}
 
 	componentDidMount() {
-		axios.get("http://localhost:5000/api/players").then(({ data }) => {
-			console.log(data);
+		axios
+			.get("http://localhost:5000/api/players")
+			.then(({ data }) => {
+				console.log(data);
 
-			this.setState(st => ({
-				players: data
-			}));
-		});
+				this.setState(st => ({
+					players: data
+				}));
+			})
+			.catch(err => console.log(err));
 	}
 
 	render() {
