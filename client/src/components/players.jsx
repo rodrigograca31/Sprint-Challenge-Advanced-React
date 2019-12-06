@@ -13,7 +13,7 @@ class Players extends React.Component {
 		axios
 			.get("http://localhost:5000/api/players")
 			.then(({ data }) => {
-				console.log(data);
+				// console.log(data);
 
 				this.setState(st => ({
 					players: data
