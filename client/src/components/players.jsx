@@ -32,42 +32,48 @@ class Players extends React.Component {
 	render() {
 		return (
 			<>
-				{this.state.players.map(player => {
-					// return (
-					// 	<>
-					// 		<b>Name: </b>
-					// 		{player.name}
-					// 		<br />
-					// 		<b>Country: </b>
-					// 		{player.country}
-					// 		<br />
-					// 		<b>Searches: </b>
-					// 		{player.searches}
-					// 		<br />
-					// 		<br />
-					// 	</>
-					// );
-					return (
-						<Grid item xs={3}>
-							<Card>
-								<CardContent>
-									<Typography variant="body2" component="p">
-										<b>Name: </b>
-										{player.name}
-										<br />
-										<b>Country: </b>
-										{player.country}
-										<br />
-										<b>Searches: </b>
-										{player.searches}
-										<br />
-										<br />
-									</Typography>
-								</CardContent>
-							</Card>
-						</Grid>
-					);
-				})}
+				<h1>Players: </h1>
+				<Grid container spacing={3}>
+					{this.state.players.map(player => {
+						// return (
+						// 	<>
+						// 		<b>Name: </b>
+						// 		{player.name}
+						// 		<br />
+						// 		<b>Country: </b>
+						// 		{player.country}
+						// 		<br />
+						// 		<b>Searches: </b>
+						// 		{player.searches}
+						// 		<br />
+						// 		<br />
+						// 	</>
+						// );
+						return (
+							<Grid item xs={3}>
+								<Card>
+									<CardContent>
+										<Typography
+											variant="body2"
+											component="p"
+										>
+											<b>Name: </b>
+											{player.name}
+											<br />
+											<b>Country: </b>
+											{player.country}
+											<br />
+											<b>Searches: </b>
+											{player.searches}
+											<br />
+											<br />
+										</Typography>
+									</CardContent>
+								</Card>
+							</Grid>
+						);
+					})}
+				</Grid>
 			</>
 		);
 	}

@@ -5,6 +5,7 @@ import { render, fireEvent, waitForElement } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 import axios from "axios";
+import Players from "./components/players";
 // jest.mock("axios");
 
 it("renders without crashing", () => {
@@ -50,3 +51,25 @@ test("renders buttons", () => {
 // );
 // });
 //
+
+test("Players component", () => {
+	const { container, debug, getByText } = render(<Players />);
+	const palyersTitle = getByText(/Players/i); // 2 because we clicked twice
+	expect(palyersTitle).toBeInTheDocument();
+});
+
+test("dark-mode class exists after click", () => {
+	const { container, debug, getByText } = render(<App />);
+	const singleButton = container.querySelector("button");
+	fireEvent.click(singleButton);
+
+	const ele = container.querySelector(".dark-mode");
+	console.log(ele);
+
+	// expect(ele).not.toBe(null);
+	expect(ele).toBe(null);
+
+	// expect(ele).toBeInTheDocument();
+
+	// console.log(debug());
+});

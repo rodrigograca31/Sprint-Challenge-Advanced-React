@@ -22,9 +22,7 @@ function App() {
 			</Button>
 			<br />
 			<br />
-			<Grid container spacing={3}>
-				<Players></Players>
-			</Grid>
+			<Players></Players>
 		</div>
 	);
 }
