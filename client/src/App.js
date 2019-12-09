@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.scss";
+import Players from "./components/players";
+import { useDarkMode } from "./hooks/useDarkMode";
+
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [darkMode, setDarkMode] = useDarkMode(false);
+
+	const toggleMode = e => {
+		e.preventDefault();
+		setDarkMode(!darkMode);
+	};
+
+	return (
+		<div className="App">
+			<Button onClick={toggleMode} variant="contained" color="secondary">
+				Join the dark side!
+			</Button>
+			<br />
+			<br />
+			<Players></Players>
+		</div>
+	);
 }
 
 export default App;
